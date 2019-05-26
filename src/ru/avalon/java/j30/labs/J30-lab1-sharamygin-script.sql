@@ -46,8 +46,8 @@ create table PRODUCTS(
 
 
 create table ORDER2PRODUCT(
-    ORDERS integer primary key references ORDERS(ORDERID),
-    PRODUCT integer primary key references PRODUCTS(PRODUCTID)
+    ORDERS integer references ORDERS(ORDERID),
+    PRODUCT integer references PRODUCTS(PRODUCTID)
 );
 
 
