@@ -46,8 +46,16 @@ create table PRODUCTS(
 
 
 create table ORDER2PRODUCT(
-    ORDERS integer primary key references ORDERS(ORDERID),
-    PRODUCT integer primary key references PRODUCTS(PRODUCTID)
+    "ORDER" integer,
+-- primary key references ORDERS(ORDERID),
+    PRODUCT integer,
+-- primary key references PRODUCTS(PRODUCTID)
+    constraint pk_ORDR2PRDCT primary key ("ORDER", PRODUCT),
+    constraint fk_ORDR2PRDCT_ORDRID  foreign key ("ORDER")
+                                            references ORDERS (ORDERID),
+    constraint fk_ORDR2PRDCT_PRDCTSID  foreign key (PRODUCT)
+                                          references PRODUCTS(PRODUCTID)
+
 );
 
 
@@ -83,7 +91,7 @@ values (1, 'Killer, admin'),
        (2, 'Jellyfish catcher, guest'),
        (3, 'user');
 
-insert into ORDER2PRODUCT(ORDERS, PRODUCT)
+insert into ORDER2PRODUCT("ORDER", PRODUCT)
 values  (1, 1),
         (2, 2),
         (3, 3);
